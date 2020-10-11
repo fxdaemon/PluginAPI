@@ -30,7 +30,8 @@ To begin using libForexApi, you will need the following:
 1. Download "ForexConnectAPI" from [Latest Stable Release (1.5)](http://www.fxcodebase.com/wiki/index.php/Download#Latest_Stable_Release_.281.5.29).
 2. Save the unzipped library files to the "bin" directory of FXDaemon.
 3. Copy the compiled libForexApi library from libForexApi/bin to the "bin" directory of FXDaemon.
-4. Modify libForexApi/conf/forexapi-plugin.cfg according to your account definition.
+4. Modify libForexApi/conf/forexapi-plugin.cfg according to your account definition and copy to the "conf" directory of FXDaemon.
+5. Modify ini file of FXDaemon according to libForexApi/demo-forexapi.ini.
 
 ※ If you get a "can't connect to price server" error in Windows 7, please refer to the following:
 1. Install "KB3140245" with Windows Update.
