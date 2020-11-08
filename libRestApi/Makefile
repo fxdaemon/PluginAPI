@@ -14,7 +14,7 @@ SRCEXT = cpp
 
 INCLUDES =
 
-LIBS = -Llib/linux -L/usr/local/lib
+LIBS = -Llib/linux
 
 CXXFLAGS = -std=c++11 -pthread -Wall -Wextra -fPIC -DSI_NO_CONVERSION -DSI_Case=SI_GenericCase -DSI_NoCase=SI_GenericNoCase
 ifeq ($(buildtype), release)

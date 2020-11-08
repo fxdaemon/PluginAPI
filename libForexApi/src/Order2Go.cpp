@@ -469,7 +469,7 @@ void COrder2Go::logTimeFrames()
 		outSrt = outSrt + szBuffer;
 		timeFrame->release();
 	}
-	m_pPluginProxy->onMessage(MSG_INFO, outSrt.c_str());
+	m_pPluginProxy->onMessage(MSG_DEBUG, outSrt.c_str());
 	timeFrames->release();
 	factory->release();
 }
@@ -548,7 +548,7 @@ void COrder2Go::printSettings()
 		sprintf_s(buffer, sizeof(buffer), "\n            Trailing step: %d-%d", minTrailingStep, maxTrailingStep);
 		settingStr += buffer;
 	}
-	m_pPluginProxy->onMessage(MSG_INFO, settingStr.c_str());
+	m_pPluginProxy->onMessage(MSG_DEBUG, settingStr.c_str());
 }
 
 void COrder2Go::onSystemPropertiesReceived(IO2GResponse *response)
@@ -569,7 +569,7 @@ void COrder2Go::onSystemPropertiesReceived(IO2GResponse *response)
 		const char *sysProperty = systemResponseReader->getProperty(i, value);
 		s = s + "\n" + sysProperty + " = " + value;
 	}
-	m_pPluginProxy->onMessage(MSG_INFO, s.c_str());
+	m_pPluginProxy->onMessage(MSG_DEBUG, s.c_str());
 
 	systemResponseReader->release();
 	factory->release();
@@ -637,7 +637,7 @@ int COrder2Go::getHistoricalData(const char* symbol, const char* period, time_t 
 			CUtils::strOfTime(&tmEnd, TimeFormat).c_str(),
 			CUtils::strOfTime(&tmOutStart, TimeFormat).c_str(),
 			CUtils::strOfTime(&tmOutEnd, TimeFormat).c_str());
-		m_pPluginProxy->onMessage(MSG_INFO, buf);
+		m_pPluginProxy->onMessage(MSG_DEBUG, buf);
 	}
 	return ret;
 }

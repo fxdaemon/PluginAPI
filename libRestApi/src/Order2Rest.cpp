@@ -633,7 +633,7 @@ int COrder2Rest::initCurl()
 	m_CurlList[CURL_GET_PRICE]->parseResFileds(getPriceInfo("Response"));
 	if (m_CurlList[CURL_GET_PRICE]->init(
 		getPriceInfo("Method"), getPriceInfo("Request"), true, onGetPrice) == CURLE_OK) {
-		m_pPluginProxy->onMessage(MSG_INFO, "[GetPrice] curl_easy_init succeeded.");
+		m_pPluginProxy->onMessage(MSG_DEBUG, "[GetPrice] curl_easy_init succeeded.");
 	}
 	else {
 		m_pPluginProxy->onMessage(MSG_ERROR, "Can't init [GetPrice] curl.");
@@ -648,7 +648,7 @@ int COrder2Rest::initCurl()
 	m_CurlList[CURL_GET_ACCOUNT]->parseResFileds(getAccountInfo("Response"));
 	if (m_CurlList[CURL_GET_ACCOUNT]->init(
 		getAccountInfo("Method"), getAccountInfo("Request"), false, onGetAccount) == CURLE_OK) {
-		m_pPluginProxy->onMessage(MSG_INFO, "[GetAccount] curl_easy_init succeeded.");
+		m_pPluginProxy->onMessage(MSG_DEBUG, "[GetAccount] curl_easy_init succeeded.");
 	}
 	else {
 		m_pPluginProxy->onMessage(MSG_ERROR, "Can't init [GetAccount] curl.");
@@ -663,7 +663,7 @@ int COrder2Rest::initCurl()
 	m_CurlList[CURL_GET_OPENTRADES]->parseResFileds(GetOpenedTradesInfo("Response"));
 	if (m_CurlList[CURL_GET_OPENTRADES]->init(
 		GetOpenedTradesInfo("Method"), GetOpenedTradesInfo("Request"), false, onGetOpenTrades) == CURLE_OK) {
-		m_pPluginProxy->onMessage(MSG_INFO, "[GetOpenedTrades] curl_easy_init succeeded.");
+		m_pPluginProxy->onMessage(MSG_DEBUG, "[GetOpenedTrades] curl_easy_init succeeded.");
 	}
 	else {
 		m_pPluginProxy->onMessage(MSG_ERROR, "Can't init [GetOpenedTrades] curl.");
@@ -678,7 +678,7 @@ int COrder2Rest::initCurl()
 	m_CurlList[CURL_GET_CLOSEDTRADES]->parseResFileds(GetClosedTradesInfo("Response"));
 	if (m_CurlList[CURL_GET_CLOSEDTRADES]->init(
 		GetClosedTradesInfo("Method"), GetClosedTradesInfo("Request"), false, onGetClosedTrades) == CURLE_OK) {
-		m_pPluginProxy->onMessage(MSG_INFO, "[GetClosedTrades] curl_easy_init succeeded.");
+		m_pPluginProxy->onMessage(MSG_DEBUG, "[GetClosedTrades] curl_easy_init succeeded.");
 	}
 	else {
 		m_pPluginProxy->onMessage(MSG_ERROR, "Can't init [GetClosedTrades] curl.");
@@ -692,7 +692,7 @@ int COrder2Rest::initCurl()
 	m_CurlList[CURL_GET_CANDLES]->parseResFileds(GetHistoricalDataInfo("Response"));
 	if (m_CurlList[CURL_GET_CANDLES]->init(
 		GetHistoricalDataInfo("Method"), GetHistoricalDataInfo("Request"), false) == CURLE_OK) {
-		m_pPluginProxy->onMessage(MSG_INFO, "[GetHistoricalData] curl_easy_init succeeded.");
+		m_pPluginProxy->onMessage(MSG_DEBUG, "[GetHistoricalData] curl_easy_init succeeded.");
 	}
 	else {
 		m_pPluginProxy->onMessage(MSG_ERROR, "Can't init [GetHistoricalData] curl.");
@@ -711,9 +711,9 @@ int COrder2Rest::startTradeEventThread()
 void COrder2Rest::tradeEventsProcess(void *pv)
 {
 	COrder2Rest* order2Rest = (COrder2Rest*)pv;
-	order2Rest->m_pPluginProxy->onMessage(MSG_INFO, "Order2Rest event thread begin...");
+	order2Rest->m_pPluginProxy->onMessage(MSG_DEBUG, "Order2Rest event thread begin...");
 	order2Rest->waitNextEvent();
-	order2Rest->m_pPluginProxy->onMessage(MSG_INFO, "Order2Rest event thread end.");
+	order2Rest->m_pPluginProxy->onMessage(MSG_DEBUG, "Order2Rest event thread end.");
 }
 
 void COrder2Rest::waitNextEvent()
@@ -1033,7 +1033,7 @@ int COrder2Rest::getHistoricalData(const char* symbol, const char* period, time_
 		CUtils::strOfTime(&tmEnd, TimeFormat).c_str(),
 		CUtils::strOfTime(&tmOutStart, TimeFormat).c_str(),
 		CUtils::strOfTime(&tmOutEnd, TimeFormat).c_str());
-	m_pPluginProxy->onMessage(MSG_INFO, buf);
+	m_pPluginProxy->onMessage(MSG_DEBUG, buf);
 
 	return tblCandleList.size();
 }
